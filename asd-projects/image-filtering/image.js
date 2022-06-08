@@ -38,6 +38,7 @@ for (var i = 0; i < image.length; i++){
   og.push(t);
 }
 
+
 // this function uses jQuery to create the image on the screen based on the image data
 function render(element, image){
   for (var r = 0; r < image.length; r++) {
