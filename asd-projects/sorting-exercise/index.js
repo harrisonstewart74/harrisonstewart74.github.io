@@ -27,7 +27,6 @@ async function bubbleSort(array) {
 }
 
 // TODO 3: Implement quickSort
-var index = await partition(array, left, right);
 async function quickSort(array, left, right) {
     if (right - left > 0) {
         var index = await partition(array, left, right);
