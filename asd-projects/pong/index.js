@@ -6,13 +6,13 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
+  
   // Constant Variables
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
 
   // Game Item Objects
-  var ball = gameitem('#ball')
+  var ball = GameItem('#ball')
   var paddle = GameItem('#paddle');
 
   var KEY = {
@@ -37,6 +37,7 @@ function runProgram() {
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   $(document).on('keyup', handleKeyUp);
+  startball();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -47,14 +48,32 @@ function runProgram() {
   */
   var board = jQuery('#board');
   var boardWidth = board.width();
-
+  var boardHeight = board.height();
 
   function newFrame() {
     movePaddle();
 
 
   }
+  function moveBall(){
+    ball.x += ball.speedX;              // update the position of the box along the x-axis
+    if (ball.x + ball.width >= boardWidth) {
+      ball.x = ball.speedX * -1;
+    }
+    if (ball.x < 0) {
+      ball.x = ball.speedX * -1;
+    }
+    ball.x += ball.speedX;              // update the position of the box along the x-axis
+    if (ball.y + ball.height >= boardHeight) {
+      ball.y = ball.speedY * -1;
+    }
+    if (ball.y < 0) {
+      ball.y -= ball.speedY * -1;
+    }
+    $(ball.id).css("left", ball.x)
+    $(ball.id).css("top", ball.y)
 
+  }
 
   /* 
   Called in response to events.
@@ -95,7 +114,10 @@ function runProgram() {
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
   function startball(){
-    
+    ball.speedX = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedY = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+    ball.x = 0
+    ball.y = 0
   }
 
   function endGame() {
