@@ -7,15 +7,42 @@ body {
   width: 440px;
   height: 440px;
   border: 1px solid white;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   position: relative;
 }
 
-#gameItem {
-  background-color: teal;
-  width: 50px;
-  height: 50px;
+#paddle {
+  background-color: rgb(0, 0, 0);
+  width: 80px;
+  height: 10px;
   position: absolute;
+  top: 425px;
+  left: 175px;
+}
+  #ball {
+    background-color: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 350px;
+    left: 205px;
+  }
+
+  .brick {
+    background-color: rgb(0, 0, 0);
+    width: 80px;
+    height: 50px;
+    position: absolute;
+    top: 150px;
+    left: 175px;
+  }
+
 /*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
 /*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+
+p {
+  position: absolute;
+  left: 500px;
+  background-color: aqua;
 }
