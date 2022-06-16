@@ -52,23 +52,24 @@ function runProgram() {
 
   function newFrame() {
     movePaddle();
-
+    moveBall();
 
   }
   function moveBall(){
-    ball.x += ball.speedX;              // update the position of the box along the x-axis
+    ball.x += ball.speedX;             
     if (ball.x + ball.width >= boardWidth) {
-      ball.x = ball.speedX * -1;
+      ball.speedX = ball.speedX * -1;
     }
     if (ball.x < 0) {
-      ball.x = ball.speedX * -1;
+      ball.speedX = ball.speedX * -1;
     }
-    ball.x += ball.speedX;              // update the position of the box along the x-axis
-    if (ball.y + ball.height >= boardHeight) {
-      ball.y = ball.speedY * -1;
+  // update the position of the box along the x-axis
+    ball.y += ball.speedY
+  if (ball.y + ball.height >= boardHeight) {
+      ball.speedY = ball.speedY * -1;
     }
     if (ball.y < 0) {
-      ball.y -= ball.speedY * -1;
+      ball.speedY = ball.speedY * -1;
     }
     $(ball.id).css("left", ball.x)
     $(ball.id).css("top", ball.y)
