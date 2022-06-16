@@ -1,0 +1,25 @@
+User Story / Gameplay
+Describe the gameplay
+two players hit a ball back and forth and whoever misses their opponet scores a point 
+What are the conditions when the game begins?
+the ball must start moving and the paddles should be able to move
+Does the game have an end? If so, what are the conditions for when it ends?
+it doesnt have to have an end but it should end around when the score hits 5-10
+What ifs will there be?
+if the ball hits the paddle bounce, if ball goes bast border add 1 to opponents score, if ball hits top or bottom border bounce
+Visual Game Components:
+What are the visual game components? For example, in Bouncing Box, the game components were the board and the box.
+the board the paddles and he ball
+Which will be static? (the board)
+the board only
+Which will be animated? (the box)
+the paddles and the ball
+What data will you need to manage each game component? For example, in Bouncing Box, the data values were positionX, speedX, and points.
+positionX positionY and speedX and speedY and width and hight or you can just make a factory function to do all of them
+Events / Logic
+What events will occur in this game? (timer events, keyboard events, clicking events?)
+handleclick and handlekey events
+How do those events affect the data of the program?
+handlekey events affect the movement of the objects and handle click to start the game
+For each "event", write out the high-level logic of what will happen. It is better (and tricky) to be as specific as you can while remaining high-level!
+each handle key event will move an object when pressed down and then stop moving once released and the handle click will do start the game upon click of the mouse
