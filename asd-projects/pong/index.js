@@ -17,6 +17,7 @@ function runProgram() {
 
   // Game Item Objects
   var ball = GameItem('#ball')
+  var changeScore = 0
   var paddle = GameItem('#paddle');
   var storeBricks = [];
   var KEY = {
@@ -43,6 +44,7 @@ function runProgram() {
   $(document).on('keyup', handleKeyUp);
   startball();
   creation();
+  scoreUpdate();
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +74,7 @@ function runProgram() {
     // update the position of the box along the x-axis
     ball.y += ball.speedY
     if (ball.y + ball.height >= boardHeight) {
-      ball.speedY = ball.speedY * -1;
+      endGame();
     }
     if (ball.y < 0) {
       ball.speedY = ball.speedY * -1;
@@ -100,17 +102,23 @@ function runProgram() {
     else {
       return false
     }
+    
   }
 
   function allBrickCollisions() {
-    for (var i = 0;i < storeBricks.length;i++){
-     if (doCollide(ball,storeBricks[i] )){
-      handleBrickCollisions(storeBricks[i]);
-      $(storeBricks[i].id).remove();
-      storeBricks.splice(i, 1);
-     }
+    for (var i = 0; i < storeBricks.length; i++) {
+      if (doCollide(ball, storeBricks[i])) {
+        handleBrickCollisions(storeBricks[i]);
+        $(storeBricks[i].id).remove();
+        storeBricks.splice(i, 1);
+        scoreUpdate();
+      }
     }
   }
+
+  
+    
+  
 
   function handlePaddleCollision() {
     if (doCollide(paddle, ball)) {
@@ -172,8 +180,6 @@ function runProgram() {
   function startball() {
     ball.speedX = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
     ball.speedY = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-    ball.x = 0
-    ball.y = 0
   }
 
   function endGame() {
@@ -197,7 +203,7 @@ function runProgram() {
           .addClass("brick")
           .css("left", brickX)
           .css("top", brickY)
-          .attr("id", nameTheBrick );
+          .attr("id", nameTheBrick);
 
         var brick = GameItem('#' + nameTheBrick);
         storeBricks.push(brick);
@@ -219,12 +225,19 @@ function runProgram() {
     var ballDistancePercentX = ballRelX / boxOfBrick.width;
     var ballDistancePercentY = ballRelY / boxOfBrick.height;
 
-    if (Math.abs(ballDistancePercentX) < Math.abs(ballDistancePercentY)){
+    if (Math.abs(ballDistancePercentX) < Math.abs(ballDistancePercentY)) {
       ball.speedY *= -1;
     }
     else {
       ball.speedX *= -1;
     }
   }
-}
 
+
+  function scoreUpdate() {
+    changeScore += 1
+    $("#score").text(changeScore)
+
+  }
+
+}
